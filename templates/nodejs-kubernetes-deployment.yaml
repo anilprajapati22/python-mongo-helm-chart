@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nodejs-kubernetes
+  name: nodejs-kubernetes
+  namespace: {{ .Values.nameSpace }}
+spec:
+  replicas: {{ .Values.sgnons.replicas }}
+  selector:
+    matchLabels:
+      io.kompose.service: nodejs-kubernetes
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: nodejs-kubernetes
+    spec:
+      containers:
+        - name: nodejs-kubernetes
+          image: {{ .Values.appimage }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources: {}
+          env:
+            # Static environment variables
+            - name: MONGO_DB_URL
+              value: mongodb://nodejs-kubernetes-mongodb:{{ .Values.db.servicePort }}/nodejs-kubernetes
+            - name: PORT
+              value: "80"
+            # Dynamically adding secrets based on condition
+            {{- if eq .Values.createSecret "yes" }}
+            {{- range .Values.secretData }}
+            - name: {{ .key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.appPrefix }}-secret
+                  key: {{ .key }}
+            {{- end }}
+            {{- end }}  
+      restartPolicy: Always

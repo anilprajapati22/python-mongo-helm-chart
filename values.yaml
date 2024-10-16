@@ -1,0 +1,35 @@
+# Default values for mychart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+
+
+
+
+appPrefix: "mongo-node"
+
+nameSpace: "node-mongo-ns"
+
+sgnons:
+  replicas: 2
+
+appimage: docker.io/anilprajapati18/flask-mongo-app:v1 
+
+
+# values.yaml
+
+createSecret: "yes" # Use "yes" to create the secret, otherwise set "no"
+
+# Define secrets if createSecret is "yes"
+secretData:
+  - key: "MY_SECRET_KEY_1"
+    value: "mySecretValue1"
+  - key: "MY_SECRET_KEY_2"
+    value: "mySecretValue2"
+
+
+db:
+  imageName: docker.io/mongo:4.2
+  targetPort: 27017
+  servicePort: 27017
