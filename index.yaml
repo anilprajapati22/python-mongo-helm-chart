@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  python-mongo-helm-chart:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2023-05-16T17:18:39.002242+05:30"
+    description: A Helm chart for Kubernetes
+    digest: 2d9b6e7f8a1c844666666666666666666666666666666666666666666666666
+    home: https://github.com/anilprajapati22/python-mongo-helm-char
+    icon: https://raw.githubusercontent.com/anilprajapati22/python-mongo-helm-char/main/logo.png
+    keywords:
+    - python
+    - mongo
+    - flask
+    maintainers:
+    - email: anilprajapati22@gmail.com
+      name: Anil Prajapati
+    name: python-mongo-helm-chart
+    sources:
+    - https://github.com/anilprajapati22/python-mongo-helm-char
+    type: application
+    urls:
+    - https://github.com/anilprajapati22/python-mongo-helm-char/releases/download/v1.0/python-mongo-helm-chart-1.0.tgz
+    version: 1.0
+generated: "2023-05-16T17:18:39.002242+05:30"
